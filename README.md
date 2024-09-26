@@ -1,16 +1,19 @@
-Mobile communication techniques
-T Technical Teaching
-MobCom
+# Mobile communication techniques
+
+
 ELIA Petros
-Abstract
+
+## Abstract
+
 The goal of MOBCOM is to provide a fundamental understanding of mobile communication systems. The course will seek to describe the key aspects of channel characteristics/modeling, of communication techniques, and to describe the application of these techniques in wireless communication systems.
 
-Teaching and Learning Methods: Lectures and Lab sessions (group of 2-3 students).
+`Teaching and Learning Methods:` Lectures and Lab sessions (group of 2-3 students).
 
-Course Policies: Attendance at the lab session is mandatory.
+`Course Policies:` Attendance at the lab session is mandatory.
 
 
-Bibliography
+## Bibliography
+
 Book: TSE D., VISWANATH P. Fundamentals of Wireless Communication. Cambridge University Press, 2005, 564p.
 
 
