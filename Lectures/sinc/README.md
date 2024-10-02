@@ -112,4 +112,5 @@ While no single individual can be credited with the invention of the sinc functi
 
 # References
 
-- [ ] [Sinc Function](https://www.youtube.com/watch?v=9sd4DWragBg)
+- [ ] [:tv: Sinc Function](https://www.youtube.com/watch?v=9sd4DWragBg)
+- [ ] [Wikipedia: Sinc function](https://en.wikipedia.org/wiki/Sinc_function)
