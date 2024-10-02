@@ -20,7 +20,7 @@ The Doppler effect is a phenomenon observed when there is a relative motion betw
 
 4. **Formula**:
    - The observed frequency $f'$ can be calculated using the formula:
-     $f' = f \frac{v + v_o}{v + v_s}$
+     $$f' = f \frac{v + v_o}{v + v_s}$$
      where:
      - $f$ = emitted frequency
      - $v$ = speed of the wave in the medium
