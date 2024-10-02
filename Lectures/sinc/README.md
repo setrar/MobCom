@@ -89,3 +89,27 @@ To generate the sinc function in Julia, you can define it using a simple functio
 ### Running the Code
 
 You can run the above code in a Julia environment (like Julia REPL, Jupyter notebook, or any Julia IDE) to visualize the sinc function. The plot will show the characteristic shape of the sinc function, with a peak at \(x = 0\) and oscillations decreasing in amplitude as \(x\) moves away from zero.
+
+
+## History
+
+The sinc function, while commonly associated with signal processing and Fourier analysis, does not have a single inventor. Instead, it emerged from the mathematical developments around Fourier series and transforms, particularly in the context of interpolation and signal reconstruction.
+
+### Historical Context
+
+1. **Fourier Analysis**:
+   - The concept of the sinc function is closely linked to the work of Jean-Baptiste Joseph Fourier, who developed Fourier series in the early 19th century. His work laid the foundation for representing functions as sums of sine and cosine waves.
+
+2. **Sampling Theorem**:
+   - The formal definition of the sinc function as \(\text{sinc}(x) = \frac{\sin(\pi x)}{\pi x}\) is often attributed to the work on the Nyquist-Shannon sampling theorem, which was developed by Harry Nyquist and Claude Shannon in the mid-20th century. This theorem established the principles of sampling and reconstruction of signals, where the sinc function plays a crucial role.
+
+3. **Interpolation and Signal Processing**:
+   - The use of the sinc function in interpolation methods, particularly in reconstructing signals from their samples, became prominent as digital signal processing evolved in the latter half of the 20th century.
+
+### Conclusion
+
+While no single individual can be credited with the invention of the sinc function, it is a mathematical construct that emerged from the collective contributions of mathematicians and engineers in the fields of Fourier analysis, sampling theory, and signal processing. The function has since become a fundamental tool in these areas.
+
+# References
+
+- [ ] [Sinc Function](https://www.youtube.com/watch?v=9sd4DWragBg)
