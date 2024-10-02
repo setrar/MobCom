@@ -29,3 +29,7 @@ The Doppler effect is a phenomenon observed when there is a relative motion betw
 
 ### Summary:
 The Doppler effect is a critical concept in wave physics that explains how the frequency of waves changes based on the relative motion between the source and the observer, with applications across various scientific fields.
+
+# References
+
+- [ ] [:video: The Doppler Effect: what does motion do to waves?](https://www.youtube.com/watch?v=h4OnBYrbCjY)
