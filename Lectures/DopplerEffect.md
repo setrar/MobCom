@@ -32,4 +32,4 @@ The Doppler effect is a critical concept in wave physics that explains how the f
 
 # References
 
-- [ ] [:video: The Doppler Effect: what does motion do to waves?](https://www.youtube.com/watch?v=h4OnBYrbCjY)
+- [ ] [:tv: The Doppler Effect: what does motion do to waves?](https://www.youtube.com/watch?v=h4OnBYrbCjY)
