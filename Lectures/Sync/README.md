@@ -1,3 +1,5 @@
+# sinc function
+
 The sinc function plays a crucial role in various aspects of signal processing, where its properties are leveraged for filtering, sampling, and reconstruction of signals. Here are some key applications:
 
 ### 1. **Low-Pass Filtering**
