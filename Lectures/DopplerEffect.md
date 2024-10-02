@@ -19,15 +19,15 @@ The Doppler effect is a phenomenon observed when there is a relative motion betw
      - **Medical Imaging**: In Doppler ultrasound to assess blood flow in vessels.
 
 4. **Formula**:
-   - The observed frequency \( f' \) can be calculated using the formula:
-     \[
+   - The observed frequency $f'$ can be calculated using the formula:
+     $
      f' = f \frac{v + v_o}{v + v_s}
-     \]
+     $
      where:
-     - \( f \) = emitted frequency
-     - \( v \) = speed of the wave in the medium
-     - \( v_o \) = speed of the observer (positive if moving towards the source)
-     - \( v_s \) = speed of the source (positive if moving away from the observer)
+     - $f$ = emitted frequency
+     - $v$ = speed of the wave in the medium
+     - $v_o$ = speed of the observer (positive if moving towards the source)
+     - $v_s$ = speed of the source (positive if moving away from the observer)
 
 ### Summary:
 The Doppler effect is a critical concept in wave physics that explains how the frequency of waves changes based on the relative motion between the source and the observer, with applications across various scientific fields.
