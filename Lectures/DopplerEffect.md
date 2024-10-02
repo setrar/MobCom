@@ -65,3 +65,4 @@ Doppler spread is an important phenomenon in mobile communication, affecting sig
 # References
 
 - [ ] [:tv: The Doppler Effect: what does motion do to waves?](https://www.youtube.com/watch?v=h4OnBYrbCjY)
+- [ ] [Sinc Function](https://www.youtube.com/watch?v=9sd4DWragBg)
