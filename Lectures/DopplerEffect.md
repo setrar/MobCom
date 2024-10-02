@@ -50,11 +50,11 @@ The Doppler effect is a critical concept in wave physics that explains how the f
    - **Channel Capacity**: The effective bandwidth of the channel is affected, which can influence the data rates that can be achieved.
 
 4. **Mathematical Representation**:
-   - The Doppler spread can be characterized by the Doppler shift $ f_D $, which is determined by:
+   - The Doppler spread can be characterized by the Doppler shift $f_D$, which is determined by:
      $$f_D = \frac{v}{\lambda}$$
      where:
-     - $ v $ = relative velocity between the transmitter and receiver
-     - $ \lambda $ = wavelength of the signal
+     - $v$ = relative velocity between the transmitter and receiver
+     - $\lambda$ = wavelength of the signal
 
 5. **Applications**:
    - Understanding Doppler spread is crucial in designing wireless communication systems, especially for mobile environments such as cellular networks, satellite communications, and vehicular communications.
