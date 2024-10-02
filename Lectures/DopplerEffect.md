@@ -51,9 +51,7 @@ The Doppler effect is a critical concept in wave physics that explains how the f
 
 4. **Mathematical Representation**:
    - The Doppler spread can be characterized by the Doppler shift $ f_D $, which is determined by:
-     $
-     f_D = \frac{v}{\lambda}
-     $
+     $$f_D = \frac{v}{\lambda}$$
      where:
      - $ v $ = relative velocity between the transmitter and receiver
      - $ \lambda $ = wavelength of the signal
