@@ -9,10 +9,7 @@ To make a transceiver using the sinc function, you'll be leveraging the sinc fun
 
    - **Transmit Filter (Pulse Shaping):** In a transmitter, the sinc function can be used to shape the transmitted signal pulses. This results in a smooth signal in the time domain with a well-defined frequency domain representation.
    
-     The sinc function in the time domain can be expressed as:
-     $$
-     \text{sinc}(t) = \frac{\sin(\pi t)}{\pi t}
-     $$
+     The sinc function in the time domain can be expressed as: $\text{sinc}(t) = \frac{\sin(\pi t)}{\pi t}$
      By applying the sinc function to each transmitted symbol, you get pulses that have limited bandwidth, reducing spectral leakage.
 
      You can sample the sinc function to form a discrete-time signal for transmission.
