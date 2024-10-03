@@ -150,6 +150,7 @@ While no single individual can be credited with the invention of the sinc functi
 
 - [ ] [:tv: Sinc Function](https://www.youtube.com/watch?v=9sd4DWragBg)
 - [ ] [Wikipedia: Sinc function](https://en.wikipedia.org/wiki/Sinc_function)
-- [ ] [Root-raised-cosine filter](https://en.wikipedia.org/wiki/Root-raised-cosine_filter)
+- [ ] [Wikipedia: Root-raised-cosine filter](https://en.wikipedia.org/wiki/Root-raised-cosine_filter)
+- [ ] [GNU Radio: Root Raised Cosine Filter](https://wiki.gnuradio.org/index.php/Root_Raised_Cosine_Filter)
 
 - [ ] [FPGA based rrc filter using distributed arithmetic Algorithm](https://www.ijaist.com/wp-content/uploads/2018/08/FPGAbasedrrcfilterusingdistributedarithmeticAlgorithm.pdf)
