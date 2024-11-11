@@ -2,7 +2,7 @@
 
 | Lectures |
 |-|
-| [Presentation](presentation_FIRST%20CLASS%20MOBCOM%202024.ppt) |
+| [Presentation](presentation_FIRST%20CLASS%20MOBCOM%202024.pdf) |
 | [01](01) |
 | [02](02) |
 | [03](03) |
