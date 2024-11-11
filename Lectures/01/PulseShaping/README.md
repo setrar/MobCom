@@ -116,15 +116,15 @@ To generate the sinc function in Julia, you can define it using a simple functio
 
 ### Explanation
 
-- **Function Definition**: The `sinc` function is defined to return \(1\) when \(x\) is \(0\) (using a conditional operator) and computes the sinc value for other \(x\) values using the formula \(\frac{\sin(\pi x)}{\pi x}\).
+- **Function Definition**: The `sinc` function is defined to return $1$ when $x$ is $0$ (using a conditional operator) and computes the sinc value for other $x$ values using the formula $\frac{\sin(\pi x)}{\pi x}$.
   
-- **Generating Values**: The `x_values` range is set from \(-10\) to \(10\) with a step of \(0.01\), and the sinc function is evaluated over this range using broadcasting (`sinc.(x_values)`).
+- **Generating Values**: The `x_values` range is set from $-10$ to $10$ with a step of $0.01$, and the sinc function is evaluated over this range using broadcasting (`sinc.(x_values)`).
 
 - **Plotting**: The `Plots` package is used to create a plot of the sinc function, labeling the axes and providing a legend.
 
 ### Running the Code
 
-You can run the above code in a Julia environment (like Julia REPL, Jupyter notebook, or any Julia IDE) to visualize the sinc function. The plot will show the characteristic shape of the sinc function, with a peak at \(x = 0\) and oscillations decreasing in amplitude as \(x\) moves away from zero.
+You can run the above code in a Julia environment (like Julia REPL, Jupyter notebook, or any Julia IDE) to visualize the sinc function. The plot will show the characteristic shape of the sinc function, with a peak at $x = 0$ and oscillations decreasing in amplitude as $x$ moves away from zero.
 
 
 ## History
@@ -137,7 +137,7 @@ The sinc function, while commonly associated with signal processing and Fourier 
    - The concept of the sinc function is closely linked to the work of Jean-Baptiste Joseph Fourier, who developed Fourier series in the early 19th century. His work laid the foundation for representing functions as sums of sine and cosine waves.
 
 2. **Sampling Theorem**:
-   - The formal definition of the sinc function as \(\text{sinc}(x) = \frac{\sin(\pi x)}{\pi x}\) is often attributed to the work on the Nyquist-Shannon sampling theorem, which was developed by Harry Nyquist and Claude Shannon in the mid-20th century. This theorem established the principles of sampling and reconstruction of signals, where the sinc function plays a crucial role.
+   - The formal definition of the sinc function as $\text{sinc}(x) = \frac{\sin(\pi x)}{\pi x}$ is often attributed to the work on the Nyquist-Shannon sampling theorem, which was developed by Harry Nyquist and Claude Shannon in the mid-20th century. This theorem established the principles of sampling and reconstruction of signals, where the sinc function plays a crucial role.
 
 3. **Interpolation and Signal Processing**:
    - The use of the sinc function in interpolation methods, particularly in reconstructing signals from their samples, became prominent as digital signal processing evolved in the latter half of the 20th century.
