@@ -7,7 +7,7 @@ function add_combined_hlines!(offsets::Vector{Float64}, base_values::Vector{Floa
 end
 
 # Define base values and offsets
-base_values = [-1.00, -2.00, -3.00, -4.00]
+base_values = [-0.00, -1.00, -2.00, -3.00, -4.00, -5.00]
 offsets = [0.0, -0.05, -0.10, -0.15, -0.20, -0.30, -0.40, -0.70]
 
 # Plot with function
