@@ -704,11 +704,7 @@ limit of reliable communication over a noisy channel.
     \subsection{Communication System
 Components:}\label{communication-system-components}
 
-\$ \begin{gather}
-\boxed{\text{Source}} \quad \to \underline{x} = (x_1, \dots, x_n) \to \quad \boxed{\text{Encoder}} \quad  \to \underline{c} = (c_1, \dots, c_n)  \qquad \rceil \\
-\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \boxed{\text{Channel}} \\
-\boxed{\text{Sink}} \quad \gets \hat{x} = (\hat{x}_1, \dots, \hat{x}_n) \gets \quad \boxed{\text{Decoder}} \quad  \gets \underline{y} = (y_1, \dots, y_n) \qquad \rfloor
-\end{gather} \$
+\(\begin{align} \boxed{\text{Source}} \quad \to \underline{x} = (x_1, \dots, x_n) \to \quad \boxed{\text{Encoder}} \quad  \to \underline{c} = (c_1, \dots, c_n)  \qquad \rceil \\ \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \boxed{\text{Channel}} \\ \boxed{\text{Sink}} \quad \gets \hat{x} = (\hat{x}_1, \dots, \hat{x}_n) \gets \quad \boxed{\text{Decoder}} \quad  \gets \underline{y} = (y_1, \dots, y_n) \qquad \rfloor \end{align}\)
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -813,7 +809,7 @@ Code}\label{properties-of-linear-block-code}
     The \(H\) matrix defines the null space of \(G\): \(H G^\top = 0\)
   \item
     Used to verify codewords:
-    \(H \underline{v}^\top = 0 \implies \underline{v} \in \mathcal{X}.\)
+    \(\underline{v} H^\top = 0 \implies \underline{v} \in \mathcal{X} \subseteq \mathbb{F}_2^n\)
   \end{itemize}
 \item
   \textbf{Error Detection and Correction}:
@@ -954,12 +950,6 @@ message vector \(\underline{u}\) with the generator matrix \(G\).
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Generator Matrix}: \(G\)
-\end{itemize}
-
 \textbf{Code Size}: \(|\mathcal{X}| = 2^k\)
 
 \begin{itemize}
@@ -977,7 +967,7 @@ message vector \(\underline{u}\) with the generator matrix \(G\).
   (Hamming distance)
 \item
   \textbf{Linear Code Minimum Distance}:\\
-  \(d_\text{min} = \min_\limits{\binom{\underline{x}_i, \underline{x}_j \in \mathcal{X}}{x_i \neq x_j}} \big\{ d_H(x_i, x_j) \big\} = \min_\limits{x \in \mathcal{X}} \big\{ W_H(\underline{x}) \big\}\)
+  \(d_\text{min} = \min\limits_{\binom{\underline{x}_i, \underline{x}_j \in \mathcal{X}}{x_i \neq x_j}} \big\{ d_H(x_i, x_j) \big\} = \min\limits_{x \in \mathcal{X}} \big\{ W_H(\underline{x}) \big\}\)
 \item
   \textbf{Parity Check Relation}:\\
   \(\underline{v} H^\top = 0 \implies \underline{v} \in \mathcal{X} \subseteq \mathbb{F}_2^n\)
@@ -1092,6 +1082,925 @@ u̲ = Adjoint\{Int64, Vector\{Int64\}\}[[0 0 0 0], [0 0 0 1], [0 0 1 0], [0 0 1 
 0], [1 1 1 0 0 0 0], [1 1 1 1 1 1 1]]
 Minimum distance of the code: 3
     \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{Parity Check Matrix
+(\(H\)):}{Parity Check Matrix (H):}}\label{parity-check-matrix-h}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Dimensions}: \(H \in \mathbb{F}_2^{(n-k) \times n}\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(n\): Codeword length.
+  \item
+    \(n-k\): Number of parity checks.
+  \end{itemize}
+\item
+  \textbf{Relation to \(G\)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(G\): Generates the code subspace with: \(\dim(\text{Im}(G)) = k\)
+  \item
+    \(H\): Defines the null space of \(G^\top\):
+    \(H = \text{null}(G^\top)\)
+  \end{itemize}
+\item
+  \textbf{Validation Condition}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A valid codeword satisfies: \(\underline{v} H^\top = 0\)
+  \end{itemize}
+\item
+  \textbf{Null Space Dimension}: \(\dim(\text{null}(G^\top)) = n - k\)
+\end{enumerate}
+
+    \subsubsection{Systematic Code:}\label{systematic-code}
+
+A linear block code is called \textbf{systematic} if: 1.
+\textbf{Codeword Structure}:
+
+\[\boxed{\underline{v} = [\text{information bits} \; | \; \text{parity bits}]}\]
+- The first \(k\) bits are the unaltered information bits. - The last
+\(n-k\) bits are the parity bits.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Generator Matrix}:
+\end{enumerate}
+
+\[\boxed{G = [I_k \; \vdots \; P_{k \times (n-k)}]_{k \times n}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(I_k\): Identity matrix for information bits.
+\item
+  \(P\): Parity matrix for redundancy.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{Parity Check Matrix}:
+\end{enumerate}
+
+\[\boxed{H = [I_{n-k} \; \vdots \; P_{(n-k) \times k}^\top]}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Benefits}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Direct access to information bits.
+  \item
+    Simplifies encoding and decoding.
+  \end{itemize}
+\end{enumerate}
+
+    \subsubsection{\texorpdfstring{The Generator Matrix
+(\(G\)):}{The Generator Matrix (G):}}\label{the-generator-matrix-g}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Definition}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(G \in \mathbb{F}_2^{k \times n}\), maps \(k\)-bit messages
+    \(\underline{u}\) to \(n\)-bit codewords \(\underline{v}\):
+    \(\underline{v} = \underline{u}^\top G\)
+  \end{itemize}
+\item
+  \textbf{Structure} (for systematic codes):
+\end{enumerate}
+
+\(\boxed{G = [I_k \; \vdots \; P_{k \times (n-k)}]_{k \times n}}\) -
+\(I_k\): \(k \times k\) identity matrix (information bits). - \(P\):
+\(k \times (n-k)\) parity matrix (defines redundancy).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Steps to Generate \(G\)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Determine code parameters: \(n\), \(k\), and \(n-k\).
+  \item
+    Design \(P\) to ensure \(H G^\top = 0\), where \(H\) is the
+    parity-check matrix.
+  \item
+    Combine \(I_k\) and \(P\) to construct \(G\).
+  \end{itemize}
+\item
+  \textbf{Example} (\((7, 4)\) Hamming Code): The \((7, 4)\) Hamming
+  code has:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \(k = 4\) information bits.
+\item
+  \(n = 7\) total bits (\(n - k = 3\) parity bits).
+\end{itemize}
+
+-\textgreater{} Steps:
+
+\begin{itemize}
+\item
+  \(I_k\) is a \(4 \times 4\) identity matrix.
+\item
+  \(P\) is a \(4 \times 3\) matrix:
+  \(P = \begin{bmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 1 \end{bmatrix}\)
+\item
+  Combine \(I_k\) and \(P\) to get \(G\):
+  \(G = \begin{bmatrix} 1 & 0 & 0 & 0 & 1 & 1 & 0 \\ 0 & 1 & 0 & 0 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 1 & 1 & 1 & 1 \end{bmatrix}\)
+\end{itemize}
+
+\(G\) encodes \(k = 4\) information bits into \(n = 7\) codeword bits.
+
+    \subsubsection{\texorpdfstring{The \textbf{parity check matrix}
+(\(H\))}{The parity check matrix (H)}}\label{the-parity-check-matrix-h}
+
+For systematic linear block codes like the Hamming code, the parity
+check matrix \(H\) is typically written in the form:
+
+\[\boxed{H_{(n-k) \times n} = [I_{n-k} \; \vdots \; P_{(n-k) \times k}^\top]}\]
+
+This is the \textbf{standard form} of the parity check matrix.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Formulation of
+\(H\):}{Formulation of H:}}\label{formulation-of-h}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Structure}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(I_{n-k}\): Identity matrix of size \((n-k) \times (n-k)\),
+    representing the parity bits.
+  \item
+    \(P^\top\): Transpose of the parity matrix \(P\) from
+    \(G = [I_k \; P]\).
+  \end{itemize}
+
+  The matrix \(H\) ensures that: \(H G^\top = 0\)
+\item
+  \textbf{Dimensions}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(H \in \mathbb{F}_2^{(n-k) \times n}\):
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Rows: \(n-k\) (number of parity check equations).
+    \item
+      Columns: \(n\) (length of the codeword).
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Example: (7, 4) Hamming
+Code}\label{example-7-4-hamming-code}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Generator Matrix \(G\)}:
+  \(G = \begin{bmatrix} I_4 & P \end{bmatrix}\) where:
+  \(P = \begin{bmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 1 \end{bmatrix}\)
+\item
+  \textbf{Transpose of \(P\)}:
+  \(P^\top = \begin{bmatrix} 1 & 1 & 0 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 1 & 1 & 1 \end{bmatrix}\)
+\item
+  \textbf{Identity Matrix \(I_{n-k}\)}:
+  \(I_{3} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}\)
+\item
+  \textbf{Parity Check Matrix \(H\)}: Combine \(I_{n-k}\) and
+  \(P^\top\):
+  \(H = \begin{bmatrix} I_{3} & P^\top \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 & 1 & 1 & 1 & 0 \\ 0 & 1 & 0 & 1 & 1 & 0 & 1 \\ 0 & 0 & 1 & 1 & 0 & 1 & 1 \end{bmatrix}\)
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Summary:}\label{summary}
+
+\begin{itemize}
+\tightlist
+\item
+  For systematic codes, the parity check matrix is:
+  \(H = \begin{bmatrix} I_{n-k} & P^\top \end{bmatrix}\)
+\item
+  It is derived to satisfy: \(H G^\top = 0\)
+\item
+  In the (7,4) Hamming code, \(H\) has dimensions \(3 \times 7\),
+  combining \(I_3\) and \(P^\top\).
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Parity Check Matrix} is used to decode the RX vector when
+  Decoding is \textbf{not optimal (generally)}, when you work with
+  Tanner graph which representation of \(H\).
+\end{itemize}
+
+\subsubsection{Hamming Code:}\label{hamming-code}
+
+\(H = \begin{bmatrix} 1 & 1 & 0 & 1 & 0 & 0 & 1 \\ 1 & 0 & 1 & 1 & 0 & 1 & 0 \\ 0 & 1 & 1 & 1 & 1 & 0 & 0 \end{bmatrix}_{\to \text{3 check nodes}}^{\downarrow \text{7 variable nodes}}\)
+
+\textbf{(n-k):}
+
+3 linear equations, that may valid, non-erroneous TX must satisfy
+
+\(\begin{align*} x = (C_2, C_3, C_4, C_5, C_6, C_7, C_1) \\ C_1 + C_2 + C_3 + C_5 = 0 \\ C_1 + C_3 + C_4 + C_6 = 0 \\ C_1 + C_2 + C_7 = 0 \end{align*}\)
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{56}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{using}\PY{+w}{ }\PY{n}{Graphs}\PY{+w}{  }\PY{c}{\PYZsh{} For graph representation}
+
+\PY{c}{\PYZsh{} Create a directed graph}
+\PY{n}{tanner}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{DiGraph}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{+w}{  }\PY{c}{\PYZsh{} A directed graph with 5 nodes}
+
+\PY{c}{\PYZsh{} Add edges to create an acyclic structure}
+\PY{n}{add\PYZus{}edge!}\PY{p}{(}\PY{n}{tanner}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{add\PYZus{}edge!}\PY{p}{(}\PY{n}{tanner}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{1}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{4}\PY{p}{)}
+\PY{n}{add\PYZus{}edge!}\PY{p}{(}\PY{n}{tanner}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{3}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{add\PYZus{}edge!}\PY{p}{(}\PY{n}{tanner}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{5}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{2}\PY{p}{)}
+\PY{n}{add\PYZus{}edge!}\PY{p}{(}\PY{n}{tanner}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{5}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{4}\PY{p}{)}
+
+\PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Is Bipartite: }\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{is\PYZus{}bipartite}\PY{p}{(}\PY{n}{tanner}\PY{p}{)}\PY{p}{)}
+\PY{c}{\PYZsh{} Display basic properties of the graph}
+\PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Number of nodes: }\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{nv}\PY{p}{(}\PY{n}{tanner}\PY{p}{)}\PY{p}{)}\PY{+w}{  }\PY{c}{\PYZsh{} Number of vertices}
+\PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Number of edges: }\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{+w}{ }\PY{n}{ne}\PY{p}{(}\PY{n}{tanner}\PY{p}{)}\PY{p}{)}\PY{+w}{  }\PY{c}{\PYZsh{} Number of edges}
+
+\PY{c}{\PYZsh{} Print edges of the graph}
+\PY{n}{gplot}\PY{p}{(}\PY{n}{tanner}\PY{p}{,}\PY{+w}{ }\PY{n}{nodelabel}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Is Bipartite: true
+Number of nodes: 5
+Number of edges: 5
+    \end{Verbatim}
+ 
+            
+\prompt{Out}{outcolor}{56}{}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REVIEW_files/REVIEW_19_1.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    When writing large codes:
+
+\textbf{Tanner Graphs} (bipartite graph): \textbar{} \textbf{Variable
+nodes} \textbar{} \textbf{Check nodes} \textbar{} \textbar{}
+\textbar-\textbar-\textbar-\textbar{} \textbar{} \textbar{} \textbar{}
+\(C_1 + C_2 + C_3 + C_5 = 0\) \textbar{} \textbar{} \textbar{}
+\textbar{} \(C_1 + C_3 + C_4 + C_6 = 0\) \textbar{} \textbar{}
+\textbar{} \(C_1 + C_2 + C_7 = 0\)
+
+Tanner Graph representation used in decoding codes in an \textbf{soft}
+manner. \textbf{Soft Decoding}: - {[}Passing \textbf{likelihood
+information} for each node votes{]}. - \textbf{Soft decoding} is
+generally \textbf{suboptimal}, unless it is such that the corresponding
+Tanner graph has \textbf{no cycles}.
+
+\textbf{This Cycle Consideration} brought to the fore -
+\textbf{Low-Density Parity Check Codes (LDPC)}. Gallager 1960 - LDPC
+codes have a \textbf{sparse \(H\)}.
+
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{LDPC}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(H\) is sparse.
+  \item
+    Number of edges in the Tanner graph grows only linearly in \(n\).
+  \item
+    LDPC facilitates soft (iterative) decoding.
+  \item
+    Iterative exchange of information.
+  \item
+    Allows for simple local passing of information (at the node).
+  \end{itemize}
+\item
+  \textbf{Regular LDPC}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(n, J, k\)
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \(n\): Codeword length.
+    \item
+      \(J\): Degree of each variable node.
+    \item
+      \(k\): Degree of each check node.
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+Location of ones in \(H\) is chosen to have a certain randomness,
+subject to a structure that guarantees decoding performance.
+
+    Gallager \((n = 20, J = 3, k = 4 )\) Construction
+
+\begin{itemize}
+\tightlist
+\item
+  \(H = 15 \times 20\)
+\end{itemize}
+
+Pick at Random
+
+\(G = \begin{bmatrix}
+1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1
+\end{bmatrix}\)
+
+Columns of first submatrix
+
+\(\pi_1 = \begin{bmatrix}
+1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}\)
+
+\(\pi_2 = \begin{bmatrix}
+1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0
+\end{bmatrix}\)
+
+    Turbo Codes (uses Convolutional Codes)
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{images/fig_turbo_codes.png}}
+\caption{Figure (with permutations and Convolutions}
+\end{figure}
+
+    \begin{itemize}
+\tightlist
+\item
+  Three Main powerful Codes
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Turbo Codes \(\approx 1992\)
+  \item
+    LDPC Codes Gallager \(\approx 1960\)
+  \item
+    Polar Codes
+  \end{itemize}
+\item
+  \textbf{All 3 codes achieve Capacity (\(\approx\)) with easier
+  decoding}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    LDPC easier to decode than Turbo
+  \item
+    Polar has smaller error decay (a little bit slower)
+  \end{itemize}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+    \section{\texorpdfstring{\textbf{Polar
+Codes}}{Polar Codes}}\label{polar-codes}
+
+\subsubsection{Notation:}\label{notation}
+
+\begin{itemize}
+\item
+  \(X, Y \sim P_{X, Y}\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\begin{align}
+      H(X) &= -\mathbb{E} \, \log P(X) \\
+           &= -\sum_x P(x) \log P(x)
+           \end{align}\)- Higher\(H\): More uncertainty -\(H(X | Y)\):
+    Joint
+    Entropy\(I(X; Y) = \underbrace{H(X)}_{10} - \underbrace{H(X | Y)}_{ - 7} \quad \underbrace{\textbf{- Mutual Information}}_\text{= 3 Bits of Information}\)\#\#\#
+    Formulas:
+    -\(\begin{align} H(X | Y) &= -\mathbb{E}_{x,y} \, \log P(X | Y) \\ &= \sum_{x, y} P(x, y) \log \frac{1}{P(x | y)} \end{align}\)
+  \end{itemize}
+\item
+  \(I(X; Y) = \sum\limits_{x, y} P(x, y) \log \frac{P(x, y)}{P(x) P(y)}\)
+\item
+  \(X^n = (X_1, \dots, X_n)\)
+\item
+  \(Y^n = (Y_1, \dots, Y_n)\)\(\qquad (X^n,Y^n) \approx P_{x^n,Y^n}\)
+\end{itemize}
+
+\subsubsection{Chain Rule:}\label{chain-rule}
+
+\(H(X^n | Y^n) = \sum\limits_{i=1}^n H(X_i | Y^n, X^{i-1})\)
+
+\textbf{Where} \(X^{i-1} = (X_1, \dots, X_{i-1})\)
+
+    \(H(X_1 | Y^n) + H(X_2 | X_1, Y^n) + H(X_3 | \underbrace{X_1, X_2}_{(\because)}, Y^n) + \dots\)
+
+\begin{quote}
+\((\because)\) know the 2 previous days, (this is the chain rule).
+\end{quote}
+
+\(\begin{align} I(X^n; Y^n) &= \sum\limits_{i=1}^n I(X_i; Y^n | X^{i-1}) \\ &= I(X_1; Y_n) + I(X_2, Y_n| X_1) + \cdots \end{align}\)
+
+    \textbf{Result (math)}
+
+\subsubsection{Principle of
+Polarization}\label{principle-of-polarization}
+
+\begin{itemize}
+\item
+  Let \(X \sim P_X\), \(\mathcal{X} = \{0, 1\}\)
+\item
+  Let \(X_1, X_2, \dots\) i.i.d. \(\sim X\)
+\item
+  Let \(N = 2^n\), \(n > 1\)
+\item
+  Let \(X^n = \{X_1, X_2, \dots, X_n\}\)
+\item
+  Let: \(F = \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}\),
+  \(F^{\otimes n}\)= \(n\)-power Kronecker product of \(F\)
+\end{itemize}
+
+\(F^{\otimes 2} = \begin{bmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 1 & 1 \end{bmatrix}\)
+
+\(F^{\otimes 3} = \begin{bmatrix} 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \end{bmatrix}\)
+
+\begin{itemize}
+\tightlist
+\item
+  Let \(u^N = x^N \cdot F^{\otimes n}\)
+\end{itemize}
+
+\subsubsection{Theorem:}\label{theorem}
+
+\begin{itemize}
+\item
+  For any fixed \(\delta > 0\):
+\item
+  \(\boxed{\lim_{N \to \infty} \frac{1}{N} \left| \{ i \in \{1, 2, \dots, N\} \mid H(u_i | u^{i-1}) \in [\delta, 1-\delta] \} \right| = 0}\)
+\item
+  It says that:
+  \(H(u_i | u^{i-1}) \to \begin{cases} 0       & \boxed{\text{ nothing in between them}} \\ 1 \end{cases}\)
+\end{itemize}
+
+    \pandocbounded{\includegraphics[keepaspectratio]{images/fig_no_uncertainty.png}}
+\textbf{no uncertainty}
+
+    \subsubsection{Polarization Kernel and Kronecker
+Power}\label{polarization-kernel-and-kronecker-power}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Base Matrix \(F\):}
+  \(F = \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}\)
+\item
+  \textbf{Kronecker Power \(F^{\otimes n}\):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Recursive definition:
+    \(F^{\otimes n} = F^{\otimes (n-1)} \otimes F\)
+  \item
+    \(\otimes\): Kronecker product.
+  \end{itemize}
+\item
+  \textbf{Examples:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(F^{\otimes 1} = F\)
+  \item
+    \(F^{\otimes 2}\):
+    \(\begin{bmatrix} 1 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 1 & 1 & 1 & 1 \\ 1 & 0 & 1 & 0 \end{bmatrix}\)
+  \item
+    \(F^{\otimes 3}\):
+    \(\begin{bmatrix} 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \end{bmatrix}\)
+  \end{itemize}
+\item
+  \textbf{Purpose:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(F^{\otimes n}\) transforms
+    \(X^N \to U^N = X^N \cdot F^{\otimes n}\).
+  \item
+    Enables \textbf{channel polarization}, splitting channels into
+    highly reliable and unreliable sets for polar codes.
+  \end{itemize}
+\end{enumerate}
+
+    For any \(\delta > 0\), in fact \(\delta \approx 2^{-\sqrt{n}}\)\\
+(i.e.~\(\delta\) can be as low as?)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Example:}\label{example}
+
+\begin{itemize}
+\tightlist
+\item
+  \(n= 2, \; F = \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}\)
+\end{itemize}
+
+\((u_1, u_2) = (x_1, x_2) \cdot  \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix} = \begin{bmatrix} x_1 \oplus x_2, x_2 \end{bmatrix}\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(n = 4, \; F^{\otimes 2} = \begin{bmatrix} 10 & 00 \\ 11 & 00 \\ 10 & 10 \\ 11 & 11 \end{bmatrix}\)
+\end{itemize}
+
+\((u_1, u_2, u_3, u_4) = (x_1, x_2, x_3, x_4) \cdot F^{\otimes 2} = [ \underbrace{x_1 \oplus x_2 \oplus x_3 \oplus x_4}_{u_1} , \underbrace{x_2 \oplus x_4}_{u_2}  , \underbrace{x_3 \oplus x_4}_{u_3}  , \underbrace{x_4}_{u_4}  ]\)
+
+\subsubsection{Kronecker Product:}\label{kronecker-product}
+
+\(A = \begin{bmatrix} a_{11} & a_{12}  & \cdots \\ a_{21} & a_{22}s \\ \vdots \end{bmatrix}, B \qquad\)
+\(A \otimes B = \begin{bmatrix} a_{11}B & a_{12}B \\ a_{21}B & \cdots \end{bmatrix}\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+    \subsubsection{\texorpdfstring{key result in \textbf{polar codes} and
+\textbf{channel
+polarization}}{key result in polar codes and channel polarization}}\label{key-result-in-polar-codes-and-channel-polarization}
+
+\(x_1, x_2, \dots, x_n \qquad X \sim  \text{i.i.d.}\)
+
+\(u^n = x^n \cdot F^n\)
+
+\paragraph{Corollary:}\label{corollary}
+
+\(\frac{\left[ \{ i : H(u_i | u^{i-1}) > 1 - \delta \} \right]}{N} = H(X)\)
+
+\subsubsection{Proof:}\label{proof}
+
+\(H(u^n) = H(x^n) = n \, H(x) (i.i.d)\)
+
+This describes a key result in \textbf{polar codes} and \textbf{channel
+polarization}, where the \textbf{entropy} and structure of the polar
+transformation are analyzed mathematically.
+
+\paragraph{Explanation:}\label{explanation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Setup:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(x_1, x_2, \dots, x_n\): A sequence of independent and identically
+    distributed (\textbf{i.i.d.}) random variables from the source
+    \(X\).
+  \item
+    \(u^n = x^n \cdot F^n\): The transformation of \(x^n\) using the
+    \textbf{Kronecker power} of \(F\) (polarization matrix) to produce
+    the vector \(u^n\).
+
+    \begin{itemize}
+    \tightlist
+    \item
+      This defines the encoding operation in polar codes.
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{Corollary:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The fraction of indices \(i\) for which the \textbf{conditional
+    entropy} \(H(u_i | u^{i-1}) > 1 - \delta\) (i.e., where uncertainty
+    is high) is proportional to the \textbf{source entropy} \(H(X)\):
+    \(\frac{\left| \{ i : H(u_i | u^{i-1}) > 1 - \delta \} \right|}{N} = H(X).\)
+  \item
+    This result demonstrates how the \textbf{polarization process}
+    concentrates certain indices with high entropy (bad channels) and
+    others with low entropy (good channels).
+  \end{itemize}
+\item
+  \textbf{Proof Outline:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Since \(x_1, x_2, \dots, x_n\) are i.i.d., the total entropy of the
+    source sequence \(x^n\) is: \(H(x^n) = n \cdot H(X).\)
+  \item
+    The polar transformation preserves entropy (it's a linear
+    transformation), so: \(H(u^n) = H(x^n) = n \cdot H(X).\)
+  \item
+    This shows that the entropy is distributed across the components of
+    \(u^n\), leading to the polarization effect.
+  \end{itemize}
+\end{enumerate}
+
+\paragraph{Key Idea:}\label{key-idea}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Channel Polarization}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The transformation \(F^n\) polarizes the ``channels'' (indices
+    \(i\)) into two categories:
+
+    \begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+    \tightlist
+    \item
+      Channels with \textbf{high reliability}
+      (\(H(u_i | u^{i-1}) \approx 0\)): These are the ``good'' channels
+      used to carry information.
+    \item
+      Channels with \textbf{low reliability}
+      (\(H(u_i | u^{i-1}) \approx 1\)): These are the ``bad'' channels,
+      which are ``frozen'' (fixed to known values).
+    \end{enumerate}
+  \end{itemize}
+\item
+  The corollary quantifies this polarization, stating that the fraction
+  of good channels corresponds to the source entropy \(H(X)\).
+\end{itemize}
+
+\paragraph{Summary:}\label{summary}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Transformation}: \(u^n = x^n \cdot F^n\) is the polar
+  transformation.
+\item
+  \textbf{Result}: The fraction of ``good'' channels (low-entropy)
+  matches the source entropy \(H(X)\).
+\item
+  \textbf{Proof}: Entropy is conserved, and the polarization process
+  redistributes it across the indices of \(u^n\).
+\end{itemize}
+
+This result is central to the design and analysis of \textbf{polar
+codes}, enabling efficient encoding and decoding.
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\(H(u^N) = \sum\limits_{i=1}^N \underbrace{H(u_i | u^{i-1})}_\text{(chain rule)} \quad  = N \cdot H(X)\)\((\because)\)
+
+But recall (from theorem) that the \# of terms where:
+\(H(u_i | u^{i-1}) \in (\delta, 1-\delta) \quad \text{is near zero.}\)
+
+\(\approx 0 \cdot \Big| \overbrace{H(u_i | u^{i-1})}^{\# \text{of times }} \approx 0 \Big| + 1 \cdot \Big| \overbrace{H(u_i | u^{i-1})}^{\# \text{of times }} \approx 1 \Big|\)
+
+All the entropy accumulated in summation is due to \(K\) terms where:
+\(H(u_i | u^{i-1}) \in (1 - \delta, 1).\)
+
+\subsubsection{Accumulated Entropy:}\label{accumulated-entropy}
+
+\(K \cdot 1 = N \cdot H(X) \quad (\text{from }\because) \implies \frac{K}{N} = H(X).\)
+
+\(H(X) \approx 0.3 \qquad \text{30\% of } H(u_i | u^{i-1}) \approx 1's, \quad 70\% \approx 0.\)
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{images/fig_accumulated_entropy.png}}
+\caption{accumulated entropy}
+\end{figure}
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{images/fig_channel_polarization.png}}
+\caption{channel polarization}
+\end{figure}
+
+\paragraph{\texorpdfstring{Explanation of
+\(K \cdot 1 = N \cdot H(X) \implies \frac{K}{N} = H(X)\)}{Explanation of K \textbackslash cdot 1 = N \textbackslash cdot H(X) \textbackslash implies \textbackslash frac\{K\}\{N\} = H(X)}}\label{explanation-of-k-cdot-1-n-cdot-hx-implies-frackn-hx}
+
+This equation arises in the context of \textbf{polar codes} and
+\textbf{channel polarization}, describing how the total entropy is
+distributed among the indices of the polar transformation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{Definitions and Context:}\label{definitions-and-context}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Terms}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(K\): The number of indices \(i\) where the \textbf{conditional
+    entropy} \(H(u_i | u^{i-1})\) contributes meaningfully to the total
+    entropy (i.e., \(H(u_i | u^{i-1}) \approx 1\)).
+  \item
+    \(N\): The total block length (number of indices in \(u^N\)).
+  \item
+    \(H(X)\): The entropy of the source variable \(X\), which determines
+    the overall proportion of good (reliable) channels in the
+    polarization process.
+  \end{itemize}
+\item
+  \textbf{Accumulated Entropy}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The total entropy of the transformed vector \(u^N\) is:
+    \(H(u^N) = N \cdot H(X),\) since entropy is preserved during the
+    linear transformation \(u^N = x^N \cdot F^N\).
+  \end{itemize}
+\end{enumerate}
+
+\paragraph{Key Idea:}\label{key-idea}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Entropy Contribution}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The entropy \(H(u^N)\) is primarily accumulated in the \(K\) terms
+    where \(H(u_i | u^{i-1}) \approx 1\) (good channels).
+  \item
+    For other indices, \(H(u_i | u^{i-1}) \approx 0\), meaning they
+    contribute negligible entropy.
+  \end{itemize}
+\item
+  \textbf{Total Accumulated Entropy}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If \(K\) terms contribute nearly \(1\) unit of entropy each, the
+    total entropy contributed by these terms is:
+    \(K \cdot 1 = N \cdot H(X).\)
+  \end{itemize}
+\item
+  \textbf{Proportion of Good Channels}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Dividing through by \(N\), we find that the proportion of indices
+    \(i\) where \(H(u_i | u^{i-1}) \approx 1\) is:
+    \(\frac{K}{N} = H(X).\)
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Meaning:}\label{meaning}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\frac{K}{N} = H(X)\) indicates that the fraction of ``good
+  channels'' (indices \(i\) where \(H(u_i | u^{i-1})\) is significant)
+  corresponds to the source entropy \(H(X)\).
+\item
+  For example:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If \(H(X) = 0.3\), then 30\% of the channels are reliable, while
+    70\% are unreliable (contributing \(H(u_i | u^{i-1}) \approx 0\)).
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Importance in Polar Codes:}\label{importance-in-polar-codes}
+
+This relationship quantifies \textbf{channel polarization}, where: - A
+fraction \(H(X)\) of the channels becomes highly reliable (used for
+transmitting information). - The remaining fraction \(1 - H(X)\) becomes
+unreliable (frozen).
+
+This ensures that polar codes can efficiently encode and decode data
+based on the structure of \(F^N\).
+
+    \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Channel Polarization}\label{channel-polarization}
+
+\(X \to \boxed{ W } \to Y\) \(\qquad X\) is Input to the memoryless
+channel \(W\).
+
+\textbf{Recall}: \((x, y) \sim P_{X,Y}(x, y)\)
+
+\$ \begin{align}
+P(X, Y) &= P_X(x) \cdot P_{Y|X}(y|x) \\
+        &= P_X(x) \cdot W_{Y|X}(y|x)
+\end{align} \$
+
+Using Bayes' Rule:
+\(P_{X|Y}(x|y) = \frac{P_{Y|X}(y|x) \cdot P_X(x)}{P_Y(y)} \quad \text{(Channel Fixed)}.\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Assume}: - \(X \sim X_1, X_2, \dots, X_n\),\\
+- \(X\) is discrete, \(X \in \{0, 1\}\),\\
+- Assume Binary Symmetric Channel (BSC).
+
+For \(N = 2^n\): \(U^N = X^N \cdot F^n\) \(U^N\): Input of the following
+\textbf{bigger channel}:
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Diagram:}\label{diagram}
+
+\begin{itemize}
+\tightlist
+\item
+  \(W\): Memoryless channel,
+\item
+  \(U_1, U_2, \dots, U_N\): Input,
+\item
+  \(Y_1, Y_2, \dots, Y_N\): Output.
+\end{itemize}
+
+This process \textbf{creates bad and good channels}, enabling
+\textbf{channel polarization}.
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\end{Verbatim}
+\end{tcolorbox}
 
 
     % Add a bibliography block to the postdoc
