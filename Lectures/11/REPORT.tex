@@ -396,6 +396,108 @@
     
     \(\Huge\textbf{Quick Summary of P2P Channels}\)
 
+    \paragraph{\texorpdfstring{\textbf{XOR Truth
+Table}}{XOR Truth Table}}\label{xor-truth-table}
+
+The \textbf{XOR} (exclusive OR) operation compares two bits and outputs
+\texttt{1} if the bits are different and \texttt{0} if they are the
+same.
+
+\[
+\begin{array}{|c|c|l|} 
+\hline \textbf{Input A} & \textbf{Input B} & \textbf{A} \oplus \textbf{B} \text{(XOR Output)} \\
+\hline  0 & 0 & 0 \\
+\hline  0 & 1 & 1 \\
+\hline  1 & 0 & 1 \\
+\hline  1 & 1 & 0 \\
+\hline 
+\end{array}
+\]
+
+\paragraph{\texorpdfstring{\textbf{Properties of
+XOR:}}{Properties of XOR:}}\label{properties-of-xor}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Self-Inverse:} \(A \oplus A = 0\)
+\item
+  \textbf{Identity:} \(A \oplus 0 = A\)
+\item
+  \textbf{Symmetric:} \(A \oplus B = B \oplus A\)
+\item
+  \textbf{Associative:}
+  \((A \oplus B) \oplus C = A \oplus (B \oplus C)\)
+\end{enumerate}
+
+This table is used to efficiently compute the Hamming distance between
+binary codewords.
+
+\paragraph{\texorpdfstring{\textbf{Minimum Distance and
+XOR}}{Minimum Distance and XOR}}\label{minimum-distance-and-xor}
+
+\begin{itemize}
+\item
+  \textbf{Hamming distance} \(d_H(x, y)\) between two binary codewords
+  \(x\) and \(y\) is calculated using XOR: \(z = x \oplus y\) The number
+  of \texttt{1}s in \(z\) gives the Hamming distance.
+\item
+  The \textbf{minimum distance} \(d\) of a code is the smallest Hamming
+  distance between any two distinct codewords.
+\end{itemize}
+
+\textbf{Example:}\\
+For \(x = 11001\) and \(y = 10101\):\\
+- \(x \oplus y = 01100\)\\
+- Hamming distance \(d_H(x, y) = 2\)
+
+This method makes finding \textbf{minimum distance} efficient for binary
+codes.
+
+\paragraph{\texorpdfstring{\textbf{Minimum Distance ( \(d\) ) in Coding
+Theory}}{Minimum Distance ( d ) in Coding Theory}}\label{minimum-distance-d-in-coding-theory}
+
+The \textbf{minimum distance} of a block code is the smallest number of
+positions in which any two distinct codewords differ.
+
+\subparagraph{\texorpdfstring{\textbf{Mathematical
+Definition:}}{Mathematical Definition:}}\label{mathematical-definition}
+
+For a block code with codewords of length \(n\), the minimum distance
+\(d\) is given by: \(d = \min \{ d_H(x, y) \mid x \neq y \}\) where
+\(d_H(x, y)\) is the \textbf{Hamming distance} between two codewords
+\(x\) and \(y\), defined as the number of positions where \(x\) and
+\(y\) differ.
+
+\subparagraph{\texorpdfstring{\textbf{Importance of Minimum
+Distance:}}{Importance of Minimum Distance:}}\label{importance-of-minimum-distance}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Error Detection:}\\
+  The code can detect up to \(d - 1\) errors.
+\item
+  \textbf{Error Correction:}\\
+  The code can correct up to \(\lfloor \frac{d - 1}{2} \rfloor\) errors.
+\end{enumerate}
+
+\subparagraph{\texorpdfstring{\textbf{Example:}}{Example:}}\label{example}
+
+Consider a block code with the following codewords: - \(x_1 = 11001\),\\
+- \(x_2 = 10101\),\\
+- \(x_3 = 11100\).
+
+Calculate pairwise Hamming distances: - \(d_H(x_1, x_2) = 2\), -
+\(d_H(x_1, x_3) = 2\), - \(d_H(x_2, x_3) = 3\).
+
+The minimum distance \(d\) is the smallest of these values:\\
+\(d = 2\)
+
+This code can \textbf{detect 1 error} and \textbf{correct 0 errors}
+(since \(\lfloor \frac{2 - 1}{2} \rfloor = 0\)).
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{1}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -441,7 +543,7 @@
 \prompt{Out}{outcolor}{3}{}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_3_0.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_4_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -541,7 +643,7 @@ by removing information from the channel.
 \prompt{Out}{outcolor}{4}{}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_5_0.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_6_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -696,7 +798,7 @@ limit of reliable communication over a noisy channel.
 \prompt{Out}{outcolor}{5}{}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_8_0.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_9_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1386,7 +1488,7 @@ Number of edges: 5
 \prompt{Out}{outcolor}{13}{}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_19_1.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_20_1.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1527,34 +1629,41 @@ Codes}}{Polar Codes}}\label{polar-codes}
 \subsubsection{Notation:}\label{notation}
 
 \begin{itemize}
+\tightlist
 \item
-  \(X, Y \sim P_{X, Y}\):
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \(\begin{align}
+  \(X, Y \sim P_{X, Y}\): \[\begin{align}
       H(X) &= -\mathbb{E} \, \log P(X) \\
            &= -\sum_x P(x) \log P(x)
-           \end{align}\)- Higher\(H\): More uncertainty -\(H(X | Y)\):
-    Joint
-    Entropy\(I(X; Y) = \underbrace{H(X)}_{10} - \underbrace{H(X | Y)}_{ - 7} \quad \underbrace{\textbf{- Mutual Information}}_\text{= 3 Bits of Information}\)\#\#\#
-    Formulas:
-    -\(\begin{align} H(X | Y) &= -\mathbb{E}_{x,y} \, \log P(X | Y) \\ &= \sum_{x, y} P(x, y) \log \frac{1}{P(x | y)} \end{align}\)
-  \end{itemize}
+           \end{align}
+  \]
+\end{itemize}
+
+Higher\(H\): More uncertainty
+
+\begin{itemize}
+\tightlist
+\item
+  \(H(X | Y)\): Joint Entropy
+\item
+  \(I(X; Y) = \underbrace{H(X)}_{10} - \underbrace{H(X | Y)}_{ - 7} \quad \underbrace{\textbf{= Mutual Information}}_\text{= 3 Bits of Information}\)
+\end{itemize}
+
+\subsection{\#\#\# Formulas:}\label{formulas}
+
+\(\begin{align} H(X | Y) &\overset{\Delta}{=} -\mathbb{E}_{x,y} \, \log P(X | Y) \\ &= \sum_{x, y} P(x, y) \log \frac{1}{P(x | y)} \end{align}\)
+
+\begin{itemize}
 \item
   \(I(X; Y) = \sum\limits_{x, y} P(x, y) \log \frac{P(x, y)}{P(x) P(y)}\)
 \item
   \(X^n = (X_1, \dots, X_n)\)
 \item
-  \(Y^n = (Y_1, \dots, Y_n)\)\(\qquad (X^n,Y^n) \approx P_{x^n,Y^n}\)
+  \(Y^n = (Y_1, \dots, Y_n)\)\(\qquad (X^n,Y^n) \sim P_{x^n,Y^n}\)
 \end{itemize}
 
 \subsubsection{Chain Rule:}\label{chain-rule}
 
-\(H(X^n | Y^n) = \sum\limits_{i=1}^n H(X_i | Y^n, X^{i-1})\)
-
-\textbf{Where} \(X^{i-1} = (X_1, \dots, X_{i-1})\)
+\(\boxed{ H(X^n | Y^n) = \sum\limits_{i=1}^n H(X_i | Y^n, X^{i-1}) \; \textbf{ Where } \; X^{i-1} = (X_1, \dots, X_{i-1})}\)
 
     \(H(X_1 | Y^n) + H(X_2 | X_1, Y^n) + H(X_3 | \underbrace{X_1, X_2}_{(\because)}, Y^n) + \dots\)
 
@@ -1994,6 +2103,352 @@ For \(N = 2^n\): \(U^N = X^N \cdot F^n\) \(U^N\): Input of the following
 
 This process \textbf{creates bad and good channels}, enabling
 \textbf{channel polarization}.
+
+    \paragraph{\texorpdfstring{\textbf{1. Singleton
+Bound:}}{1. Singleton Bound:}}\label{singleton-bound}
+
+The \textbf{Singleton bound} is a theoretical limit in coding theory
+that relates the code length, code rate, and minimum distance of a block
+code. It sets a limit on the trade-off between error correction and code
+efficiency.
+
+\subparagraph{\texorpdfstring{\textbf{Definition:}}{Definition:}}\label{definition}
+
+For a block code with parameters \([n, k, d]\): - \(n\): Codeword
+length. - \(k\): Number of information symbols. - \(d\): Minimum Hamming
+distance between any two distinct codewords.
+
+The \textbf{Singleton bound} states: \(d \leq n - k + 1\)
+
+This means that for a code of length \(n\) and \(k\) information
+symbols, the minimum distance \(d\) cannot exceed \(n - k + 1\).
+
+\paragraph{\texorpdfstring{\textbf{2. MDS Codes (Maximum Distance
+Separable
+Codes):}}{2. MDS Codes (Maximum Distance Separable Codes):}}\label{mds-codes-maximum-distance-separable-codes}
+
+A code that achieves the Singleton bound with equality is called an
+\textbf{MDS (Maximum Distance Separable) code}.
+
+\subparagraph{\texorpdfstring{\textbf{Definition:}}{Definition:}}\label{definition-1}
+
+A block code is called an MDS code if: \(d = n - k + 1\)
+
+MDS codes have the \textbf{maximum possible minimum distance} for their
+given length \(n\) and dimension \(k\).
+
+\paragraph{\texorpdfstring{\textbf{Properties of MDS
+Codes:}}{Properties of MDS Codes:}}\label{properties-of-mds-codes}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Error correction and detection:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    An MDS code can correct up to \(\lfloor \frac{d - 1}{2} \rfloor\)
+    errors.
+  \item
+    It can detect up to \(d - 1\) errors.
+  \end{itemize}
+\item
+  \textbf{Examples of MDS Codes:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Reed-Solomon codes}: Widely used in communication systems
+    (e.g., CDs, DVDs, and QR codes).
+  \item
+    \textbf{Simple parity check codes}: (e.g., \([n, n-1, 2]\)), which
+    can detect a single error.
+  \item
+    \textbf{Repetition codes}: (e.g., \([n, 1, n]\)), which repeat the
+    same symbol multiple times.
+  \end{itemize}
+\item
+  \textbf{Generator Matrix Properties:} For an MDS code, any
+  \(k \times k\) submatrix of the generator matrix is invertible.
+\item
+  \textbf{Dual Codes}: The dual of an MDS code is also MDS, with
+  parameters \([n, n-k, k+1]\).
+\end{enumerate}
+
+\paragraph{\texorpdfstring{\textbf{Example: Reed-Solomon
+Code}}{Example: Reed-Solomon Code}}\label{example-reed-solomon-code}
+
+For a \textbf{Reed-Solomon} code with parameters \([n, k, d]\): -
+\(n = q - 1\) (over a finite field of size \(q\)), - \(d = n - k + 1\),
+which achieves the Singleton bound.
+
+This is why Reed-Solomon codes are essential in applications where
+robust error correction is needed.
+
+\paragraph{\texorpdfstring{\textbf{Summary:}}{Summary:}}\label{summary}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{Singleton bound} defines an upper limit on the minimum
+  distance of a block code.
+\item
+  \textbf{MDS codes} achieve this limit and have the highest error
+  correction capabilities for a given code length and dimension.
+\end{itemize}
+
+    \paragraph{\texorpdfstring{\textbf{Numerical Problem: Singleton Bound
+and MDS
+Code}}{Numerical Problem: Singleton Bound and MDS Code}}\label{numerical-problem-singleton-bound-and-mds-code}
+
+A communication system uses a block code with the following parameters:
+- Code length \(n = 10\), - Number of information symbols \(k = 6\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Calculate the Singleton bound} for this code.
+\item
+  If the code has a minimum distance \(d = 5\), is this code an MDS
+  code?
+\item
+  Determine how many errors this code can \textbf{correct} and
+  \textbf{detect}.
+\end{enumerate}
+
+\paragraph{\texorpdfstring{\textbf{Solution
+Steps:}}{Solution Steps:}}\label{solution-steps}
+
+\subparagraph{\texorpdfstring{\textbf{Step 1: Singleton Bound
+Calculation}}{Step 1: Singleton Bound Calculation}}\label{step-1-singleton-bound-calculation}
+
+The Singleton bound is given by: \(d \leq n - k + 1\)
+
+Substitute \(n = 10\) and \(k = 6\) into the formula:
+\(d \leq 10 - 6 + 1 = 5\)
+
+Thus, the Singleton bound for this code is \textbf{5}.
+
+\subparagraph{\texorpdfstring{\textbf{Step 2: Check if the code is
+MDS}}{Step 2: Check if the code is MDS}}\label{step-2-check-if-the-code-is-mds}
+
+The code has \(d = 5\), which equals the Singleton bound. Therefore, the
+code \textbf{achieves the Singleton bound} and is an \textbf{MDS code}.
+
+\subparagraph{\texorpdfstring{\textbf{Step 3: Error Correction and
+Detection}}{Step 3: Error Correction and Detection}}\label{step-3-error-correction-and-detection}
+
+For an MDS code with \(d = 5\):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Error correction capability:} The number of errors the code
+  can correct is:
+  \(t = \left\lfloor \frac{d - 1}{2} \right\rfloor = \left\lfloor \frac{5 - 1}{2} \right\rfloor = \left\lfloor 2 \right\rfloor = 2\)
+
+  So, the code can correct \textbf{2 errors}.
+\item
+  \textbf{Error detection capability:} The code can detect up to
+  \textbf{\(d - 1 = 4\)} errors.
+\end{enumerate}
+
+\paragraph{\texorpdfstring{\textbf{Final
+Answers:}}{Final Answers:}}\label{final-answers}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Singleton bound: \(d \leq 5\),
+\item
+  The code is an \textbf{MDS code} since \(d = 5\),
+\item
+  The code can correct \textbf{2 errors} and detect \textbf{4 errors}.
+\end{enumerate}
+
+    \paragraph{\texorpdfstring{\textbf{Sphere Packing Bound in Coding
+Theory}}{Sphere Packing Bound in Coding Theory}}\label{sphere-packing-bound-in-coding-theory}
+
+The \textbf{sphere packing bound} (also known as the \textbf{Hamming
+bound}) gives a limit on how many codewords can fit in a Hamming space
+without their \textbf{error correction spheres} overlapping. It connects
+the \textbf{packing radius}, \textbf{covering radius}, and code
+parameters like the minimum distance \(d\).
+
+\subsubsection{\texorpdfstring{\textbf{Formal Statement of the
+Bound:}}{Formal Statement of the Bound:}}\label{formal-statement-of-the-bound}
+
+For a block code with parameters \([n, k, d]\), where: - \(n\): Codeword
+length, - \(k\): Number of information symbols (dimension of the code),
+- \(d\): Minimum distance between codewords, -
+\(t = \lfloor (d-1)/2 \rfloor\): Error correction radius (packing
+radius),
+
+The sphere packing bound is: \(M \cdot V(t, n) \leq 2^n\)
+
+Where: - \(M = 2^k\) is the number of codewords. - \(V(t, n)\) is the
+volume of a Hamming ball of radius \(t\), given by:
+\(V(t, n) = \sum_{i=0}^{t} \binom{n}{i}\)
+
+\paragraph{\texorpdfstring{\textbf{Explanation:}}{Explanation:}}\label{explanation}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{packing radius} \(t\) defines the maximum number of errors
+  a code can correct.
+\item
+  Each codeword has a Hamming sphere of radius \(t\).
+\item
+  The total volume occupied by these spheres must not exceed the size of
+  the entire Hamming space, \(2^n\).
+\item
+  This constraint limits the maximum number of codewords \(M\), ensuring
+  no overlapping.
+\end{itemize}
+
+\paragraph{\texorpdfstring{\textbf{Perfect Codes and the Sphere Packing
+Bound:}}{Perfect Codes and the Sphere Packing Bound:}}\label{perfect-codes-and-the-sphere-packing-bound}
+
+A \textbf{perfect code} achieves equality in the sphere packing bound:
+\(M \cdot V(t, n) = 2^n\)
+
+This means that: 1. The code's \textbf{error spheres} fill the Hamming
+space exactly, without gaps or overlaps. 2. For perfect codes, the
+\textbf{covering radius} \(R\) equals the \textbf{packing radius} \(t\).
+
+\paragraph{\texorpdfstring{\textbf{Example: Hamming
+Code}}{Example: Hamming Code}}\label{example-hamming-code}
+
+Consider a Hamming code with parameters \([7, 4, 3]\): - \(n = 7\),
+\(k = 4\), \(d = 3\), and \(t = 1\). - The volume of a Hamming sphere
+with radius \(t = 1\) is:
+\(V(1, 7) = \binom{7}{0} + \binom{7}{1} = 1 + 7 = 8\) - The number of
+codewords is \(M = 2^k = 16\).
+
+Check the sphere packing bound:
+\(M \cdot V(1, 7) = 16 \cdot 8 = 128 = 2^7\)
+
+Since equality holds, the Hamming code is a \textbf{perfect code}.
+
+\paragraph{\texorpdfstring{\textbf{Relationship
+Recap:}}{Relationship Recap:}}\label{relationship-recap}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2391}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7609}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Concept}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Definition}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Packing Radius} \(t\) & Radius where spheres around codewords do
+not overlap (related to error correction). \\
+\textbf{Covering Radius} \(R\) & Maximum radius needed to cover all
+vectors in the Hamming space. \\
+\textbf{Sphere Packing Bound} & \(M \cdot V(t, n) \leq 2^n\), limits
+maximum codewords without sphere overlap. \\
+\textbf{Perfect Code} & Achieves equality in the sphere packing bound,
+with \(R = t\). \\
+\end{longtable}
+
+\paragraph{\texorpdfstring{\textbf{1. Covering Radius
+\(R\)}}{1. Covering Radius R}}\label{covering-radius-r}
+
+Let \(C\) be a code with codewords
+\(\underline{c}_1, \underline{c}_2, \dots, \underline{c}_M\), where
+\(M\) is the number of codewords, and let \(F_2^n\) be the
+\textbf{Hamming space} of dimension \(n\). Define the Hamming ball
+centered at a codeword \(\underline{c}\) with radius \(r\) as:
+\(\text{Ball}(\underline{c}, r) = \{ v \in F_2^n \mid d_H(v, \underline{c}) \leq r \}\)
+
+The \textbf{covering radius} \(R\) is the smallest radius such that the
+union of all balls centered at codewords covers the entire space:
+\(R = \min \{ r \mid \bigcup_{\underline{c} \in C} \text{Ball}(\underline{c}, r) = F_2^n \}\)
+
+This means that every vector in \(F_2^n\) lies within radius \(R\) of
+some codeword in \(C\).
+
+\paragraph{\texorpdfstring{\textbf{2. Packing Radius \(S\) (Error
+Correction
+Radius)}}{2. Packing Radius S (Error Correction Radius)}}\label{packing-radius-s-error-correction-radius}
+
+The \textbf{packing radius} \(t\) is the largest radius for which balls
+centered at distinct codewords do not overlap. Formally:
+\(t = \max \{ r \mid \text{Ball}(\underline{c}_i, r) \cap \text{Ball}(\underline{c}_j, r) = \emptyset, \, \forall \, \underline{c}_i \neq \underline{c}_j \in C \}\)
+
+This ensures that no two balls of radius \(t\) around different
+codewords intersect, allowing for error correction up to \(t\) errors.
+
+In simpler terms, the packing radius is:
+\(t = \left\lfloor \frac{d - 1}{2} \right\rfloor\) where \(d\) is the
+minimum Hamming distance between any two codewords in \(C\).
+
+\paragraph{\texorpdfstring{\textbf{Key Relationship (Perfect
+Codes):}}{Key Relationship (Perfect Codes):}}\label{key-relationship-perfect-codes}
+
+For \textbf{perfect codes}, the packing radius \(t\) and covering radius
+\(R\) are equal: \(R = t\)
+
+\paragraph{\texorpdfstring{\textbf{Summary:}}{Summary:}}\label{summary}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{covering radius} is the smallest radius where all vectors
+  in the Hamming space are within some ball centered on a codeword.
+\item
+  The \textbf{packing radius} is the largest radius where no two balls
+  around different codewords overlap.
+\item
+  Perfect codes achieve \(R = t\).
+\end{itemize}
+
+    \paragraph{In Phone}\label{in-phone}
+
+outerspace: AWGN \(y = x + w\)
+
+\begin{itemize}
+\item
+  ``closed library night'' (SIMO)
+  \(\qquad y = \underline{h} \, \underline{x} + w\) but
+  \(\underline{h}, \underline{x}, w\) \(\forall\) fixed (and generally
+  known)
+\item
+  \(C_{\text{simo}} = \log(1 + \rho |h|^2)\) LTI
+  \(\qquad \underline{y} = \underline{h} \, x + w\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    rx beamforming (CSIR)
+  \end{itemize}
+\item
+  \(C_{\text{miso}} = \log(1 + \rho |\underline{h}|^2)\) CSITR
+  \(\qquad y_i = H \cdot \underline{x} + \underline{w}\)
+\item
+  ``outside''
+\end{itemize}
+
+CSIT is hard to get \(y = h + w\) but \(h_i \sim\) randomly chosen
+
+\begin{itemize}
+\tightlist
+\item
+  Quasi Static Fading (≠ diversity Techniques ST code)
+\item
+  Fast fading \(\qquad C_{\text{FF}} = C_{\text{AWGN}}\)
+\end{itemize}
+
+\(\boxed{\text{channel is chosen (drawn) randomly but here to stay}}\)
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{ }{\boxspacing}
