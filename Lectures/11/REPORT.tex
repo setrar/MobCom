@@ -167,7 +167,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{REVIEW}
+    \title{REPORT}
     
     
     
@@ -441,7 +441,7 @@
 \prompt{Out}{outcolor}{3}{}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REVIEW_files/REVIEW_3_0.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_3_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -541,7 +541,7 @@ by removing information from the channel.
 \prompt{Out}{outcolor}{4}{}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REVIEW_files/REVIEW_5_0.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_5_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -696,7 +696,7 @@ limit of reliable communication over a noisy channel.
 \prompt{Out}{outcolor}{5}{}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REVIEW_files/REVIEW_8_0.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_8_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -704,7 +704,7 @@ limit of reliable communication over a noisy channel.
     \subsection{Communication System
 Components:}\label{communication-system-components}
 
-\(\begin{align} \boxed{\text{Source}} \quad \to \underline{x} = (x_1, \dots, x_n) \to \quad \boxed{\text{Encoder}} \quad  \to \underline{c} = (c_1, \dots, c_n)  \qquad \rceil \\ \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \boxed{\text{Channel}} \\ \boxed{\text{Sink}} \quad \gets \hat{x} = (\hat{x}_1, \dots, \hat{x}_n) \gets \quad \boxed{\text{Decoder}} \quad  \gets \underline{y} = (y_1, \dots, y_n) \qquad \rfloor \end{align}\)
+\[\begin{align} \boxed{\text{Source}} \quad \to \underline{x} = (x_1, \dots, x_n) \to \quad \boxed{\text{Encoder}} \quad  \to \underline{c} = (c_1, \dots, c_n)  \qquad \rceil \\ \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \boxed{\text{Channel}} \\ \boxed{\text{Sink}} \quad \gets \hat{x} = (\hat{x}_1, \dots, \hat{x}_n) \gets \quad \boxed{\text{Decoder}} \quad  \gets \underline{y} = (y_1, \dots, y_n) \qquad \rfloor \end{align}\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1351,9 +1351,10 @@ Code}\label{example-7-4-hamming-code}
 \(\begin{align*} x = (C_2, C_3, C_4, C_5, C_6, C_7, C_1) \\ C_1 + C_2 + C_3 + C_5 = 0 \\ C_1 + C_3 + C_4 + C_6 = 0 \\ C_1 + C_2 + C_7 = 0 \end{align*}\)
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{56}{\boxspacing}
+\prompt{In}{incolor}{13}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k}{using}\PY{+w}{ }\PY{n}{Graphs}\PY{+w}{  }\PY{c}{\PYZsh{} For graph representation}
+\PY{k}{using}\PY{+w}{ }\PY{n}{GraphPlot}\PY{+w}{  }\PY{c}{\PYZsh{} For graph visualization}
 
 \PY{c}{\PYZsh{} Create a directed graph}
 \PY{n}{tanner}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n}{DiGraph}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{+w}{  }\PY{c}{\PYZsh{} A directed graph with 5 nodes}
@@ -1382,22 +1383,19 @@ Number of edges: 5
     \end{Verbatim}
  
             
-\prompt{Out}{outcolor}{56}{}
+\prompt{Out}{outcolor}{13}{}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REVIEW_files/REVIEW_19_1.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{REPORT_files/REPORT_19_1.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
 
     When writing large codes:
 
-\textbf{Tanner Graphs} (bipartite graph): \textbar{} \textbf{Variable
-nodes} \textbar{} \textbf{Check nodes} \textbar{} \textbar{}
-\textbar-\textbar-\textbar-\textbar{} \textbar{} \textbar{} \textbar{}
-\(C_1 + C_2 + C_3 + C_5 = 0\) \textbar{} \textbar{} \textbar{}
-\textbar{} \(C_1 + C_3 + C_4 + C_6 = 0\) \textbar{} \textbar{}
-\textbar{} \(C_1 + C_2 + C_7 = 0\)
+\textbf{Tanner Graphs} (bipartite graph):
+
+\(\begin{array}{|c|c|l|} \hline \textbf{Variable Nodes} & \textbf{Check Nodes} & \textbf{Equation} \\ \hline C_1                     &                       & C_1 + C_2 + C_3 + C_5 = 0 \\ \hline C_2                     &                       & C_1 + C_3 + C_4 + C_6 = 0 \\ \hline C_3                     &                       & C_1 + C_2 + C_7 = 0 \\ \hline \end{array}\)
 
 Tanner Graph representation used in decoding codes in an \textbf{soft}
 manner. \textbf{Soft Decoding}: - {[}Passing \textbf{likelihood
@@ -1956,15 +1954,17 @@ based on the structure of \(F^N\).
 
 \subsubsection{Channel Polarization}\label{channel-polarization}
 
-\(X \to \boxed{ W } \to Y\) \(\qquad X\) is Input to the memoryless
-channel \(W\).
+\(X \to \boxed{ W } \to Y\)\(\qquad X\)is Input to the memoryless
+channel\(W\).
 
 \textbf{Recall}: \((x, y) \sim P_{X,Y}(x, y)\)
 
-\$ \begin{align}
+\[
+\begin{align}
 P(X, Y) &= P_X(x) \cdot P_{Y|X}(y|x) \\
         &= P_X(x) \cdot W_{Y|X}(y|x)
-\end{align} \$
+\end{align}
+\]
 
 Using Bayes' Rule:
 \(P_{X|Y}(x|y) = \frac{P_{Y|X}(y|x) \cdot P_X(x)}{P_Y(y)} \quad \text{(Channel Fixed)}.\)
